@@ -1,5 +1,3 @@
-// 1. Inicializar o mapa (Coordenadas de exemplo: Luanda -8.839, 13.289)
-const map = L.map('mapa').setView([-8.839, 13.289], 13);
 function obterLocalizacao() {
     const opcoes = {
         enableHighAccuracy: true, // Força o uso do GPS de alta precisão
