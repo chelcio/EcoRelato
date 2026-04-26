@@ -37,6 +37,12 @@ header h1 span { color: #95d5b2; }
 
 /* Estilo do Mapa */
 #mapa {
+    height: 500px !important; /* Força o tamanho mesmo que algo tente diminuir */
+    width: 100%;
+    background-color: #e0e0e0; /* Se vir cinza, o problema é o carregamento dos dados */
+    z-index: 1; /* Garante que o mapa não fique atrás de outros elementos */
+}
+#mapa {
     height: 400px; /* Define uma altura fixa para teste */
     width: 100%;
     background-color: #eee; /* Se vires cinza, o mapa existe mas os dados não carregaram */
