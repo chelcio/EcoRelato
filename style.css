@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    padding-bottom: 20px;
+}
+
+header {
+    margin-bottom:40px;
+    background-color: #2d6a4f; /* Verde escuro */
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header h1 span {
+    color: #95d5b2; /* Verde claro */
+}
+
+.container {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Card de Upload */
+.upload-card {
+    /* overlap: Este valor negativo faz com que o cartão branco "suba" um pouco e fique por cima da cor verde do cabeçalho, um efeito visual muito moderno*/
+    
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: -30px;
+}
+/* Câmera trecos
+display: inline-block permite com q se comporte como um botão solido
+border-radius: 30px: Deixa as pontas bem arredondadas
+btn-enviar:disabled: Aqui dizemos que, enquanto o botão estiver desativado, ele deve ficar cinza
+rato deve mostrar um sinal de "proibido" (not-allowed) */
+.camera-box {
+    margin-top: 40px;
+    margin: 20px 0;
+    border: 2px dashed #ccc;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.btn-camera {
+    display: inline-block;
+    background-color: #40916c;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#preview {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Status e Botões */
+.status-gps {
+    margin: 15px 0;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1b4332;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-enviar:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Dashboard Simples */
+.stats {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.stat-item {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.stat-item .number {
+    margin-top: 40px;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d6a4f;
+}
+
+.stat-item .label {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: #777;
+}

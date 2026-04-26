@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!--usar o  Leaflet para parecer um site de limpeza urbana-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Trabalhador - EcoRelato</title>
+    <!-- CSS do Leaflet (Mapa) -->
+    <link rel="stylesheet" href="https://unpkg.com" />
+    <link rel="stylesheet" href="trabalhador.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="btn-voltar">⬅ Voltar</a>
+            <h1>Painel de <span>Limpeza</span></h1>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Mapa de Ocorrências -->
+        <section class="map-section">
+            <h2>Mapa de Focos de Lixo</h2>
+            <div id="mapa"></div>
+        </section>
+
+        <!-- Lista de Tarefas -->
+        <section class="tasks-section">
+            <h2>Tarefas Pendentes</h2>
+            <div id="listaTarefas">
+                <!-- Exemplo de um card de tarefa -->
+                <div class="task-card">
+                    <div class="task-info">
+                        <strong>📍 Localização: Zona A</strong>
+                        <p>Status: <span class="badge pendente">Pendente</span></p>
+                    </div>
+                    <button class="btn-acao" onclick="simularLimpeza()">Ver Detalhes</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JS do Leaflet -->
+    <script src="https://unpkg.com"></script>
+    <script src="trabalhador.js"></script>
+</body>
+</html>

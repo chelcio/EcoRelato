@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- CSS do Mapa -->
+<link rel="stylesheet" href="https://unpkg.com" />
+<!-- JS do Mapa -->
+<script src="https://unpkg.com"></script>
+
+<style>
+    #mapa { height: 400px; width: 100%; border-radius: 15px; }
+</style>
+
+    <meta charset="UTF-8">
+    <!--"ajusta o site ao tamanho do ecrã do telemóvel"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRelato - Limpeza Urbana</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mapa"></div>
+    <header><!--"span" para pintar a palavra relato-->
+        <h1>Eco<span>Relato</span></h1>
+        <p>Ajude a manter a nossa cidade limpa</p>
+    </header>
+
+    <main class="container">
+        <!-- Card de Envio -->
+        <section class="upload-card">
+            <h2>Reportar Lixo</h2>
+            <p>Tire uma foto do local sujo</p>
+            
+            <div class="camera-box">
+                <!-- O input 'capture' abre a câmera direto no telemóvel -->
+                <!--accept="image/*": Garante que o usuário só possa enviar fotos.-->
+                <!--capture="environment":Em vez de abrir a galeria de fotos, ele abre a câmera traseira do telemóvel automaticamente.-->
+                <!--Nós escondemos o botão feio padrão do sistema para usar um botão personalizado (o label)-->
+                <input type="file" accept="image/*" capture="environment" id="fotoInput" hidden>
+                <!--label for="fotoInput" class="btn-camera">serve como o botão visível. Ao clicar nele, o navegador entende que você clicou no input da câmera.</label-->
+                <label for="fotoInput" class="btn-camera">
+                    📸 Tirar Foto
+                </label>
+                <div id="preview">Nenhuma foto selecionada</div>
+            </div>
+
+            <div class="status-gps">
+                <p id="gpsStatus">📍 Localização: Aguardando...</p>
+            </div>
+
+            <button id="btnEnviar" class="btn-enviar" disabled>Enviar Relato</button>
+        </section>
+
+        <!-- Pequeno Dashboard de Impacto -->
+        <section class="stats">
+            <div class="stat-item">
+                <span class="number">12</span>
+                <span class="label">Pendentes</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">45</span>
+                <span class="label">Limpos</span>
+            </div>
+        </section>
+    </main>
+<script src="script.js"> </script>
+</body>
+</html>

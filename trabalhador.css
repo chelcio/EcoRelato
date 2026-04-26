@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body { background-color: #f0f2f5; }
+
+header {
+    background-color: #1b4332;
+    color: white;
+    padding: 15px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.btn-voltar {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+header h1 span { color: #95d5b2; }
+
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Estilo do Mapa */
+#mapa {
+    height: 400px; /* Define uma altura fixa para teste */
+    width: 100%;
+    background-color: #eee; /* Se vires cinza, o mapa existe mas os dados não carregaram */
+}
+#mapa {
+    height: 350px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    z-index: 1; /* Garante que o mapa fique abaixo de menus se necessário */
+}
+
+/* Cards de Tarefas */
+.task-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.pendente { background: #ffd166; color: #856404; }
+
+.btn-acao {
+    background: #40916c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
