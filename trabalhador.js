@@ -1,4 +1,11 @@
-function obterLocalizacao() {
+var mapa = L.map('mapa').setView([-8.839, 13.289], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(mapa);
+
+obterLocalizacao() {
     const opcoes = {
         enableHighAccuracy: true, // Força o uso do GPS de alta precisão
         timeout: 5000,            // Espera até 5 segundos pela resposta
