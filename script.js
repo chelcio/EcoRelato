@@ -55,7 +55,12 @@ btnEnviar.addEventListener('click', () => {
     alert(`Relato enviado com sucesso!\nLat: ${localizacaoAtual.lat}\nLng: ${localizacaoAtual.lng}`);
     // Aqui no futuro ligaremos ao Banco de Dados (Firebase)
 });
+// Exemplo básico para o script.js
+var map = L.map('mapa').setView([-23.5505, -46.6333], 13); // Coordenadas de exemplo
 
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
 /*
 // Inicializa o mapa focado em uma coordenada (ex: Luanda)
 const map = L.map('mapa').setView([-8.839, 13.289], 13);
