@@ -1,55 +1,70 @@
-// Elementos HTML
-const gpsStatus = document.getElementById("gpsStatus");
-const btnEnviar = document.getElementById("btnEnviar");
+// 1. Selecionar os elementos do HTML
+const fotoInput = document.getElementById('fotoInput');
+const preview = document.getElementById('preview');
+const gpsStatus = document.getElementById('gpsStatus');
+const btnEnviar = document.getElementById('btnEnviar');
 
-// Criar mapa (APENAS UMA VEZ)
-var mapa = L.map('mapa').setView([-8.839, 13.289], 13);
+// 2. Variáveis globais
+let localizacaoAtual = { lat: null, lng: null };
+let marcadorAtual = null; // Para guardar o marcador no mapa
 
-// Camada do mapa correta
+// 3. Inicializar o Mapa (Focado inicialmente num ponto padrão)
+var map = L.map('mapa').setView([-8.839, 13.289], 13); 
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-}).addTo(mapa);
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
 
-// ✅ FUNÇÃO CORRIGIDA
-function obterLocalizacao() {
-    const opcoes = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-
-    navigator.geolocation.getCurrentPosition(sucesso, erro, opcoes);
-}
-
-// Função sucesso
-function sucesso(position) {
-    const lat = position.coords.latitude;
-    const lng = position.coords.longitude;
-
-    gpsStatus.innerHTML = `📍 Localização Exata: ${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-    btnEnviar.disabled = false;
-
-    // opcional: centralizar mapa
-    mapa.setView([lat, lng], 15);
-}
-
-// Função erro (faltava!)
-function erro() {
-    alert("Não foi possível obter a localização.");
-}
-
-// Ícone
-const lixoIcon = L.icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/565/565547.png', // ícone real
-    iconSize: [38, 38],
+// 4. Escutar quando o usuário tira a foto
+fotoInput.addEventListener('change', function(event) {
+    const arquivo = event.target.files[0];
+    if (arquivo) {
+        preview.innerHTML = `✅ Foto capturada: <strong>${arquivo.name}</strong>`;
+        obterLocalizacao(); // Chama o GPS assim que a foto é tirada
+    }
 });
 
-// Marcador
-function adicionarMarcador(lat, lng, info) {
-    const marker = L.marker([lat, lng], {icon: lixoIcon}).addTo(mapa);
-    marker.bindPopup(`<b>Alerta de Sujidade</b><br>${info}`);
+// 5. Função para aceder ao GPS e atualizar o mapa
+function obterLocalizacao() {
+    gpsStatus.innerHTML = "📍 A localizar... aguarde.";
+
+    if ("geolocation" in navigator) {
+        // watchPosition pode ser usado para tempo real, mas getCurrentPosition é melhor para economizar bateria
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                localizacaoAtual.lat = position.coords.latitude;
+                localizacaoAtual.lng = position.coords.longitude;
+
+                gpsStatus.innerHTML = `✅ Localizado: ${localizacaoAtual.lat.toFixed(5)}, ${localizacaoAtual.lng.toFixed(5)}`;
+                
+                // --- NOVIDADE: Atualizar o Mapa ---
+                // Move a camera do mapa para a posição do usuário
+                map.setView([localizacaoAtual.lat, localizacaoAtual.lng], 17);
+
+                // Adiciona ou move o marcador
+                if (marcadorAtual) {
+                    marcadorAtual.setLatLng([localizacaoAtual.lat, localizacaoAtual.lng]);
+                } else {
+                    marcadorAtual = L.marker([localizacaoAtual.lat, localizacaoAtual.lng]).addTo(map);
+                }
+                marcadorAtual.bindPopup("<b>Você está aqui!</b><br>Local do relato.").openPopup();
+                // ----------------------------------
+
+                btnEnviar.disabled = false;
+                btnEnviar.style.backgroundColor = "#2d6a4f";
+            },
+            (error) => {
+                gpsStatus.innerHTML = "❌ Erro ao obter localização. Ative o GPS.";
+                console.error("Erro de Geolocation:", error);
+            },
+            { enableHighAccuracy: true } // Força o uso do GPS de alta precisão
+        );
+    } else {
+        gpsStatus.innerHTML = "❌ O seu navegador não suporta GPS.";
+    }
 }
 
-// Teste
-adicionarMarcador(-8.838, 13.285, "Lixo acumulado na berma da estrada.");
+// 6. Simular o envio do Relato
+btnEnviar.addEventListener('click', () => {
+    alert(`Relato enviado com sucesso!\nLat: ${localizacaoAtual.lat}\nLng: ${localizacaoAtual.lng}`);
+});
